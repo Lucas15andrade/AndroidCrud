@@ -38,13 +38,15 @@ public class ListarActivity extends AppCompatActivity {
         livros = new ArrayList<>();
         livros = (ArrayList<Livro>) db.listarTodos();
 
-        if(livros.size() > 0){
-            //Preenchendo com o primeiro Livro
-            textTitulo.setText(livros.get(0).getTitulo());
-            textAutor.setText(livros.get(0).getAutor());
-            textAno.setText(livros.get(0).getAno());
-            textNota.setText(livros.get(0).getNota());
+        if(cont == 1){
+            if(livros.size() > 0){
+                //Preenchendo com o primeiro Livro
+                textTitulo.setText(livros.get(0).getTitulo());
+                textAutor.setText(livros.get(0).getAutor());
+                textAno.setText(livros.get(0).getAno());
+                textNota.setText(livros.get(0).getNota());
 
+            }
         }
 
         Button botaoProximo = findViewById(R.id.botaoProximo);
@@ -61,7 +63,7 @@ public class ListarActivity extends AppCompatActivity {
                     textAno.setText(livros.get(cont).getAno());
                     textNota.setText(livros.get(cont).getNota());
                     cont++;
-                    voltar = cont - 1;
+                    //voltar = cont - 1;
                     Log.i("voltar","avançou");
                 }
 
@@ -73,15 +75,32 @@ public class ListarActivity extends AppCompatActivity {
         botaoAnterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                voltar--;
-                if(voltar >= 0){
-                    textTitulo.setText(livros.get(voltar).getTitulo());
-                    textAutor.setText(livros.get(voltar).getAutor());
-                    textAno.setText(livros.get(voltar).getAno());
-                    textNota.setText(livros.get(voltar).getNota());
-                    Log.i("voltar","valor de cont:"+voltar);
+                //voltar--;
+//
+//                if(voltar >= 0){
+//                    textTitulo.setText(livros.get(voltar).getTitulo());
+//                    textAutor.setText(livros.get(voltar).getAutor());
+//                    textAno.setText(livros.get(voltar).getAno());
+//                    textNota.setText(livros.get(voltar).getNota());
+//                    Log.i("voltar","valor de cont:"+voltar);
+//                } else{
+//                    Toast.makeText(ListarActivity.this, "Não tem como voltar", Toast.LENGTH_SHORT).show();
+//                }
+                Log.i("avancar","botao retroceder"+cont);
+                --cont;
+                Log.i("avancar","botao retroceder"+cont);
+                if(cont < 0){
+                    Toast.makeText(ListarActivity.this, "Impossível retroceder", Toast.LENGTH_SHORT).show();
                 } else{
-                    Toast.makeText(ListarActivity.this, "Não tem como voltar", Toast.LENGTH_SHORT).show();
+                    Log.i("avancar","botao retroceder"+cont);
+                    Log.i("avancar","titulo"+livros.get(cont).getTitulo());
+                    if(!(cont - 1 < 0)){
+                        textTitulo.setText(livros.get(cont-1).getTitulo());
+                        textAutor.setText(livros.get(cont-1).getAutor());
+                        textAno.setText(livros.get(cont-1).getAno());
+                        textNota.setText(livros.get(cont-1).getNota());
+                    }
+
                 }
 
             }

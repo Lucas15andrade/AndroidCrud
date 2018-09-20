@@ -58,6 +58,11 @@ public class ListarActivity extends AppCompatActivity {
                     Toast.makeText(ListarActivity.this, "Não há mais livros", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
+
+                    if(cont < 0){
+                        cont = 1;
+                    }
+
                     textTitulo.setText(livros.get(cont).getTitulo());
                     textAutor.setText(livros.get(cont).getAutor());
                     textAno.setText(livros.get(cont).getAno());
